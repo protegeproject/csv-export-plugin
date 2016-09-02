@@ -9,6 +9,7 @@ import org.semanticweb.owlapi.model.OWLEntity;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Rafael Gonçalves <br>
@@ -27,8 +28,14 @@ public class ExportAction extends ProtegeOWLAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         OWLEntity selectedEntity = editorKit.getWorkspace().getOWLSelectionModel().getSelectedEntity();
+        List<OWLEntity> list;
+        if(selectedEntity != null) {
+            list = Collections.singletonList(selectedEntity);
+        } else {
+            list = Collections.emptyList();
+        }
         try {
-            ExportDialogPanel.showDialog(editorKit, "Export of entity selection", Collections.singletonList(selectedEntity), true);
+            ExportDialogPanel.showDialog(editorKit, "Export of entity selection", list, true);
         } catch (IOException ex) {
             ErrorLogPanel.showErrorDialog(ex);
         }

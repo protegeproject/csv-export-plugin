@@ -4,7 +4,7 @@
                point="org.protege.editor.core.application.EditorKitMenuAction">
         <name value="Export to CSV"/>
         <class value="edu.stanford.protege.csv.export.ExportAction"/>
-        <toolTip value="Export selected entities to a CSV file"/>
+        <toolTip value="Export entities to a CSV file"/>
         <path value="org.protege.editor.owl.menu.tools/SlotQ-A"/>
         <editorKitId value="OWLEditorKit"/>
     </extension>
