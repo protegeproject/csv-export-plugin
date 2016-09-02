@@ -8,8 +8,7 @@ import org.semanticweb.owlapi.model.OWLEntity;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
 
 /**
  * @author Rafael Gonçalves <br>
@@ -17,6 +16,7 @@ import java.util.List;
  * Stanford University
  */
 public class ExportAction extends ProtegeOWLAction {
+    private static final long serialVersionUID = -7639339599620922180L;
     private OWLEditorKit editorKit;
 
     @Override
@@ -26,10 +26,9 @@ public class ExportAction extends ProtegeOWLAction {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO get selection from Entities tab
-        List<OWLEntity> entities = new ArrayList<>(editorKit.getModelManager().getActiveOntology().getSignature());
+        OWLEntity selectedEntity = editorKit.getWorkspace().getOWLSelectionModel().getSelectedEntity();
         try {
-            ExportDialogPanel.showDialog(editorKit, "Export of entity selection", entities, true);
+            ExportDialogPanel.showDialog(editorKit, "Export of entity selection", Collections.singletonList(selectedEntity), true);
         } catch (IOException ex) {
             ErrorLogPanel.showErrorDialog(ex);
         }

@@ -139,9 +139,9 @@ public class ExportDialogPanel extends JPanel implements VerifiedInputEditor {
         editCustomTextBtn.addActionListener(editCustomTextBtnListener);
 
         includePropertyNames = new JCheckBox("Include headers in first line");
-        includeEntityTypes = new JCheckBox("Include entity types");
+        includeEntityTypes = new JCheckBox("Include column with entity types");
         useCurrentRendering = new JCheckBox("Use current rendering instead of IRIs");
-        includeSuperclasses = new JCheckBox("Include superclasses");
+        includeSuperclasses = new JCheckBox("Include column with superclasses");
         includeCustomText = new JCheckBox("Include custom text in last line");
     }
 
