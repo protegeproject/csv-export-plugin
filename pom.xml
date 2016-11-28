@@ -14,7 +14,7 @@
     <packaging>bundle</packaging>
 
     <name>CSV Export Plugin</name>
-    <description>A plug-in for Protege that allows exporting entities and relations between entities as a CSV file.</description>
+    <description>A plugin for Protégé 5 that provides a way of outputting selected entities and relations to a delimiter-separated file.</description>
     <url>https://github.com/protegeproject/csv-export-plugin</url>
 
     <organization>
