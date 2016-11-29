@@ -80,7 +80,7 @@ public class CsvExporter {
     }
 
     public void export() throws IOException {
-        logger.info("Exporting Lucene search results to: " + outputFile.getAbsolutePath());
+        logger.info("Exporting to file: " + outputFile.getAbsolutePath());
         FileWriter fw = new FileWriter(outputFile);
         String header = getHeader();
         OWLReasoner reasoner = null;
@@ -187,15 +187,11 @@ public class CsvExporter {
                 if(axiom.getSignature().contains(property)) {
                     if(axiom.getAxiomType().equals(AxiomType.SUBCLASS_OF)) {
                         Optional<String> filler = getFillerForAxiom((OWLSubClassOfAxiom)axiom, entity, property);
-                        if(filler.isPresent()) {
-                            values.add(filler.get());
-                        }
+                        filler.ifPresent(values::add);
                     } else if (axiom.getAxiomType().equals(AxiomType.EQUIVALENT_CLASSES)) {
                         OWLSubClassOfAxiom subClassOfAxiom = ((OWLEquivalentClassesAxiom) axiom).asOWLSubClassOfAxioms().iterator().next();
                         Optional<String> filler = getFillerForAxiom(subClassOfAxiom, entity, property);
-                        if(filler.isPresent()) {
-                            values.add(filler.get());
-                        }
+                        filler.ifPresent(values::add);
                     }
                 }
             }
