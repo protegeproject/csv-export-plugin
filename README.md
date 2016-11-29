@@ -9,3 +9,7 @@ Install via Protégé's auto-update, or manually by cloning this repository and 
 ```mvn clean package``` 
 
 and then copying the resulting JAR file in the `target` folder to Protégé's `plugins` folder.
+
+usage
+---
+After installing the plugin, a menu item will be available under the menu `Tools > Export to CSV`.
