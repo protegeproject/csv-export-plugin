@@ -4,7 +4,6 @@ import org.protege.editor.core.ui.util.InputVerificationStatusChangedListener;
 import org.protege.editor.core.ui.util.JOptionPaneEx;
 import org.protege.editor.core.ui.util.VerifiedInputEditor;
 import org.protege.editor.owl.OWLEditorKit;
-import org.protege.editor.owl.model.find.OWLEntityFinder;
 import org.protege.editor.owl.ui.renderer.OWLCellRenderer;
 import org.semanticweb.owlapi.model.OWLEntity;
 
@@ -14,8 +13,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -135,24 +135,7 @@ public class AddPropertyToExportDialogPanel extends JPanel implements VerifiedIn
     }
 
     private void filterTextField() {
-        String toMatch = filterTextField.getText();
-        if(toMatch.isEmpty()) {
-            listModel.clear();
-            listModel.addAll(allPropertiesList);
-            return;
-        }
-        OWLEntityFinder finder = editorKit.getModelManager().getOWLEntityFinder();
-        List<OWLEntity> output = new ArrayList<>();
-        Set<OWLEntity> entities = finder.getMatchingOWLEntities(toMatch);
-        for(OWLEntity e : entities) {
-            if (allPropertiesList.contains(e)) {
-                output.add(e);
-            }
-        }
-        filteredPropertiesList = new ArrayList<>(output);
-        Collections.sort(filteredPropertiesList);
-        listModel.clear();
-        listModel.addAll(filteredPropertiesList);
+        UiUtils.filterTextField(editorKit, listModel, filterTextField.getText(), allPropertiesList);
     }
 
     public static Optional<List<OWLEntity>> showDialog(OWLEditorKit editorKit, List<OWLEntity> propertiesToExlude) {
